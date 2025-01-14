@@ -1,0 +1,31 @@
+jwt-const:
+  issuer: green@green.kr # ?? ???
+  secret: studyspringbootsagongsugikoreaairforceunivercityyoungjinaaa
+  header-schema-name: Authorization
+  claim-key: signedUser
+  token-name: JWT
+  token-type: Bearer
+  access-token-expiry: 600_000 # 10? (MS)
+  refresh-token-expiry: 1_296_000_000 # 15? (MS)
+  refresh-token-cookie-name: refresh-token
+  refresh-token-cookie-expiry: 1_296_000 # 15? (S)
+
+spring:
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mariadb://localhost/greengram_ver3
+    username: root
+    password: green502
+
+springdoc:
+  swagger-ui:
+    default-model-expand-depth: 10
+    display-request-duration: true
+    groups-order: asc
+    operations-sorter: method
+    path: /swagger
+    tags-sorter: alpha
+  cache:
+    disabled: true
+mybatis:
+  mapper-locations: mappers/**/*.xml
