@@ -2,6 +2,7 @@ package com.green.jwt.config.jwt;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,11 +14,11 @@ import java.util.List;
 import java.util.function.Function;
 
 @Getter
-@Setter
-@EqualsAndHashCode
+@EqualsAndHashCode // Equals, HashCode 메소드 오버라이딩 > Test 용도
+@RequiredArgsConstructor
 public class JwtUser implements UserDetails {
-    private long signedUserId;
-    private List<String> roles; // 인가(권한)처리 때 사용, ROLE_이름, ROLE_USER, ROLE_ADMIN
+    private final long signedUserId;
+    private final List<UserRole> roles; // 인가(권한)처리 때 사용, ROLE_이름, ROLE_USER, ROLE_ADMIN
 
     // 리턴타입으로 콜렉션인데 콜렉션에 방 하나하나의 타입은 <> 지정을 한다.
     // <?>이렇게 하면 Object가 되기 때문에 모든 타입이 허용이 된다.
@@ -41,13 +42,13 @@ public class JwtUser implements UserDetails {
 //                   }
 //                })
                 // .map(item -> new SimpleGrantedAuthority(item))와 같은 내용이다.
-                .map(SimpleGrantedAuthority::new) // map은 똑같은 size의 스트림을 만든다. Stream<List<SimpleGrantedAuthority>>으로 변환
+                .map(item -> new SimpleGrantedAuthority(item.name())) // map은 똑같은 size의 스트림을 만든다. Stream<List<SimpleGrantedAuthority>>으로 변환
                 .toList();
     }
 
     @Override
     public String getPassword() {
-        return "";
+        return null;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.green.jwt.config.security;
 
 
 import com.green.jwt.config.jwt.JwtUser;
+import com.green.jwt.config.jwt.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,15 +16,14 @@ import java.util.List;
 @Setter
 @Getter
 public class MyUserDetails implements UserDetails {
-
     private JwtUser jwtUser;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>(jwtUser.getRoles().size());
 
-        for(String role : jwtUser.getRoles()) {
-            authorities.add(new SimpleGrantedAuthority(role));
+        for(UserRole role : jwtUser.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority(role.name()));
         }
 
         return authorities;
