@@ -1,14 +1,20 @@
-jwt-const:
-  issuer: green@green.kr # 토큰 발행자
-  secret: studyspringbootsagongsugikoreaairforceunivercityyoungjinaaa
-  header-schema-name: Authorization
-  claim-key: signedUser
-  token-name: JWT
-  token-type: Bearer
-  access-token-expiry: 600_000 # 10분 (MS)
-  refresh-token-expiry: 1_296_000_000 # 15일 (MS)
-  refresh-token-cookie-name: refresh-token
-  refresh-token-cookie-expiry: 1_296_000 # 15일 (S)
+constant:
+  info-const:
+    title: JWT Practice
+    description: JWT + Security 고도화
+    version: v0.1
+
+  jwt-const:
+    issuer: green@green.kr #토큰 발행자
+    secret: DaeguGreenArtAcademyClass502RoomForJavaSpringBootFighting
+    header-key: Authorization
+    claim-key: signedUser
+    bearer-format: JWT
+    scheme: Bearer
+    access-token-expiry: 86_400_000 #1일 (MS)
+    refresh-token-expiry: 1_296_000_000 # 15일 (MS)
+    refresh-token-cookie-name: refresh-token
+    refresh-token-cookie-expiry: 1_296_000 #15일 (S)
 
 spring:
   datasource:
